@@ -2,7 +2,7 @@ import { AsyncStorage } from "react-native";
 const DECK_STORAGE_KEY = "Deck:cards";
 
 //Save deck title
-export const saveDeckTitle = title => {
+export const _saveDeckTitle = title => {
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
     JSON.stringify({
@@ -12,7 +12,7 @@ export const saveDeckTitle = title => {
 };
 
 // Add a new card to the existing deck
-export const addCardToDeck = async ({ title, card }) => {
+export const _addCardToDeck = async ({ title, card }) => {
   try {
     const deck = await AsyncStorage.getItem(DECK_STORAGE_KEY);
     const data = JSON.parse(deck);
@@ -24,7 +24,7 @@ export const addCardToDeck = async ({ title, card }) => {
 };
 
 // Get all the decks in the database
-export const getDecks = async () => {
+export const _getDecks = async () => {
   try {
     const decks = await AsyncStorage.getItem(DECK_STORAGE_KEY);
     return JSON.parse(decks);
@@ -34,7 +34,7 @@ export const getDecks = async () => {
 };
 
 //Get a specific deck
-export const getDeck = async title => {
+export const _getDeck = async title => {
   try {
     const decks = await AsyncStorage.getItem(DECK_STORAGE_KEY);
     const data = JSON.parse(decks);
@@ -44,7 +44,7 @@ export const getDeck = async title => {
   }
 };
 
-export const removeDeck = async(title) =>{
+export const _removeDeck = async(title) =>{
   const deck = await AsyncStorage.getItem(DECK_STORAGE_KEY);
   const data = JSON.parse(deck);
   data[title] = undefined
