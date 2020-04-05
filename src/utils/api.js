@@ -38,16 +38,16 @@ export const _getDeck = async title => {
   try {
     const decks = await AsyncStorage.getItem(DECK_STORAGE_KEY);
     const data = JSON.parse(decks);
-    return data[title]
+    return data[title];
   } catch (e) {
     console.log(e);
   }
 };
 
-export const _removeDeck = async(title) =>{
+export const _removeDeck = async title => {
   const deck = await AsyncStorage.getItem(DECK_STORAGE_KEY);
   const data = JSON.parse(deck);
-  data[title] = undefined
+  data[title] = undefined;
   delete data[title];
   AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
 };
