@@ -6,7 +6,6 @@ import {
   _saveDeckTitle,
   _getDecks,
   _addCardToDeck,
-  _removeDeck
 } from "../utils/api";
 
 // Action to set the deck title
@@ -68,10 +67,3 @@ export function handleAddDeckTitle(title) {
   };
 }
 
-// Async action to remove card from deck
-export function handleRemoveDeck(title) {
-  return dispatch => {
-    dispatch(remove(title));
-    _removeDeck(title).catch(dispatch(addDeckTitle(title)));
-  };
-}

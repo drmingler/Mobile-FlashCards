@@ -3,7 +3,7 @@ export const RESET_SCORE = "RESET_SCORE";
 
 export function resetScore(score = 0) {
   return {
-    RESET_SCORE,
+    type: RESET_SCORE,
     score
   };
 }
