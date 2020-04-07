@@ -44,6 +44,7 @@ export const _getDeck = async title => {
   }
 };
 
+// Remove deck from the list of decks
 export const _removeDeck = async title => {
   const deck = await AsyncStorage.getItem(DECK_STORAGE_KEY);
   const data = JSON.parse(deck);

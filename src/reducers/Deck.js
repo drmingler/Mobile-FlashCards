@@ -5,6 +5,7 @@ import {
   REMOVE_DECK
 } from "../actions/Deck";
 
+// Reducer updating the state of the deck in the store
 export default function deck(state = {}, action) {
   switch (action.type) {
     case GET_DECKS:
