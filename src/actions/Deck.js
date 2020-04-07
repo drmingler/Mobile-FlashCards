@@ -41,7 +41,7 @@ export function remove(title) {
   };
 }
 
-// Async action to add card to deck
+// Async action to add card to deck requires  title, card as an object
 export function handleAddingCardToDeck(data) {
   return dispatch => {
     _addCardToDeck(data).then(() => {
@@ -70,11 +70,8 @@ export function handleAddDeckTitle(title) {
 
 // Async action to remove card from deck
 export function handleRemoveDeck(title) {
-    return dispatch =>{
-        dispatch(remove(title));
-        _removeDeck(title).catch(
-            dispatch(addDeckTitle(title))
-        )
-    }
-
+  return dispatch => {
+    dispatch(remove(title));
+    _removeDeck(title).catch(dispatch(addDeckTitle(title)));
+  };
 }
