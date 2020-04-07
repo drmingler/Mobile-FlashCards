@@ -1,19 +1,18 @@
 import React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import DeckList from "./src/component/DeckList";
-import {createStore} from "redux";
-import {Provider} from "react-redux"
-import reducer from "./src/reducers/Shared"
-import middleware from "./src/middleware/index"
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./src/reducers/Shared";
+import middleware from "./src/middleware/index";
 
 class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducer,middleware)}>
+      <Provider store={createStore(reducer, middleware)}>
+        {/*<View>*/}
         <View style={styles.container}>
           <DeckList />
-          <Text>Welcome to React Native!</Text>
-          <Text>To get started, kkkedit App.js</Text>
         </View>
       </Provider>
     );
