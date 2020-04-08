@@ -1,45 +1,52 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, FlatList } from "react-native";
 import { connect } from "react-redux";
-import { AsyncStorage } from "react-native";
-import { formatKeyAndTitle } from "../utils/helpers";
+import DeckListItem from "./DeckListItems";
+import styled from "styled-components";
 import { handleInitialData, handleRemoveDeck } from "../actions/Shared";
+import DeckCard from "../component/Deckcard";
 import { handleAddingCardToDeck, handleAddDeckTitle } from "../actions/Deck";
 import { addScore } from "../actions/Score";
-import styled from "styled-components";
-import {black} from "color-name";
+
 
 class DeckList extends React.Component {
   componentDidMount() {
     // const card = {
-    //   question: 'What is a closure?',
-    //   answer: 'The combination of a function and the lexical environment within which that function was declared.'
+    //   question: 'What is a Php?',
+    //   answer: 'A programming language'
     // };
-    // const title = 'JavaScript';
-
-
+    // const title = 'ruby';
+    // //
     this.props.dispatch(handleInitialData());
     // this.props.dispatch(handleAddDeckTitle(title));
     // this.props.dispatch(handleRemoveDeck(title));
     // this.props.dispatch(handleAddingCardToDeck({ title, card }));
-    // this.props.dispatch(addScore(3));
+    // // this.props.dispatch(addScore(3));
   }
 
   render() {
-    const { Deck } = this.props;
+    // const { Deck } = this.props;
+    const Deck = {};
+    if (Object.keys(Deck).length === 0) {
+      return (
+        <Center>
+          <Text style={{ fontSize: 20 }}>
+            You are yet to log any data for today
+          </Text>
+        </Center>
+      );
+    }
     return (
-      <View>
-        {Object.keys(Deck).map(eachDeck => {
-          const {title, questions} = Deck[eachDeck];
-          return (
-            <View key={eachDeck}>
-              <Text style={{fontSize: 16}}>{`${title}`}</Text>
-              <Text style={{fontSize: 16}}>{`${questions.length}`}</Text>
-            </View>
-          );
-        })}
-        <Text>Welcome to React Native!</Text>
-      </View>
+      <Container>
+        <FlatList
+          data={Object.values(Deck)}
+          renderItem={({ item }) => (
+            <DeckListItem title={item.title} questions={item.questions} />
+          )}
+          keyExtractor={item => item.title}
+          extraData={Deck}
+        />
+      </Container>
     );
   }
 }
@@ -50,3 +57,17 @@ function mapStateToProps({ Deck }) {
   };
 }
 export default connect(mapStateToProps)(DeckList);
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+  padding: 50px 0;
+  background: white;
+`;
+
+const Center = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
+`;
