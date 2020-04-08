@@ -5,7 +5,6 @@ import DeckListItem from "./DeckListItems";
 import styled from "styled-components";
 import { handleInitialData, handleRemoveDeck } from "../actions/Shared";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import DeckCard from "./DeckCard";
 import { handleAddingCardToDeck, handleAddDeckTitle } from "../actions/Deck";
 import { addScore } from "../actions/Score";
 import { purple } from "../utils/colors";

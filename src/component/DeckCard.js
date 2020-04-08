@@ -1,30 +1,38 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Platform } from "react-native";
+import { Platform } from "react-native";
 import styled from "styled-components";
-import { white } from "../utils/colors";
-import { black } from "color-name";
 
 class DeckCard extends React.Component {
   render() {
-    const numOfCards = 1;
+    const numOfCards = 2;
     const title = "Javascript";
     const ButtonStyle =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidAddCardBtn;
     return (
       <Container>
-        <CardInfoContainer>
-          <CardTitle>{title}</CardTitle>
+        <DeckInfoContainer>
+          <DeckTitle>{title}</DeckTitle>
           {numOfCards === 1 ? (
             <CardNumber>{numOfCards} card</CardNumber>
           ) : (
             <CardNumber>{numOfCards} cards</CardNumber>
           )}
-        </CardInfoContainer>
+        </DeckInfoContainer>
         <CardButtonsContainer>
-          <ButtonStyle>
+          <ButtonStyle
+            onPress={() =>
+                // Redirect to add card page with title of card
+              console.log("Add Card")
+            }
+          >
             <ButtonText>Add Card</ButtonText>
           </ButtonStyle>
-          <ButtonStyle>
+          <ButtonStyle
+            onPress={() =>
+              // Redirect to add card page with title of card
+              console.log("Start Quiz")
+            }
+          >
             <ButtonText>Start Quiz</ButtonText>
           </ButtonStyle>
         </CardButtonsContainer>
@@ -38,12 +46,12 @@ const Container = styled.View`
   justify-content: space-between;
 `;
 
-const CardInfoContainer = styled.View`
+const DeckInfoContainer = styled.View`
   flex : 3
   align-items : center;
   justify-content : center;
 `;
-const CardTitle = styled.Text`
+const DeckTitle = styled.Text`
   font-size: 50px;
   padding: 20px;
 `;
