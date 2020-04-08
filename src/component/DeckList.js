@@ -1,14 +1,17 @@
 import React from "react";
-import { Text, FlatList } from "react-native";
+import { Text, FlatList, Platform } from "react-native";
 import { connect } from "react-redux";
 import DeckListItem from "./DeckListItems";
 import styled from "styled-components";
 import { handleInitialData, handleRemoveDeck } from "../actions/Shared";
-import DeckCard from "../component/Deckcard";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import DeckCard from "./DeckCard";
 import { handleAddingCardToDeck, handleAddDeckTitle } from "../actions/Deck";
 import { addScore } from "../actions/Score";
+import { purple } from "../utils/colors";
 
 
+/* DeckList lists all the available  decks in the store */
 class DeckList extends React.Component {
   componentDidMount() {
     // const card = {
@@ -25,14 +28,24 @@ class DeckList extends React.Component {
   }
 
   render() {
-    // const { Deck } = this.props;
-    const Deck = {};
+    const { Deck } = this.props;
     if (Object.keys(Deck).length === 0) {
       return (
         <Center>
-          <Text style={{ fontSize: 20 }}>
-            You are yet to log any data for today
-          </Text>
+          {Platform.OS === "ios" ? (
+            <Ionicons
+              name={"ios-albums"}
+              size={200}
+              style={{ color: purple }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name={"cards-playing-outline"}
+              size={200}
+              style={{ color: purple }}
+            />
+          )}
+          <Text style={{ fontSize: 20 }}>You are yet to add any deck</Text>
         </Center>
       );
     }
@@ -60,8 +73,6 @@ export default connect(mapStateToProps)(DeckList);
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  padding: 50px 0;
-  background: white;
 `;
 
 const Center = styled.View`
