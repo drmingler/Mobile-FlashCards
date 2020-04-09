@@ -11,7 +11,6 @@ import {
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { handleAddingCardToDeck } from "../actions/Deck";
-import {handleInitialData} from "../actions/Shared";
 
 
 // I will take the title of the deck from the newdeck route route
