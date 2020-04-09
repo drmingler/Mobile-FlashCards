@@ -3,8 +3,10 @@
 export function formatCard(decks,title) {
     const card = decks[title].questions;
     const totalCardsInDeck = card.length;
+    //const cardIterator = card[Symbol.iterator]();
     return {
-        card,
+       card,
+       //  cardIterator,
         totalCardsInDeck
     }
 

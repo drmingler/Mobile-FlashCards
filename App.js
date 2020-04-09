@@ -10,7 +10,9 @@ import styled from "styled-components";
 import Quiz from "./src/component/Quiz";
 
 class App extends React.Component {
+
   render() {
+
     return (
       <Provider store={createStore(reducer, middleware)}>
         <Container>

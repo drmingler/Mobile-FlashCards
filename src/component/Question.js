@@ -7,7 +7,7 @@ import { Text, View } from "react-native";
 export default function Questions({ question }) {
   return (
     <View>
-      <Text>What is my name?</Text>
+      <Text style={{fontSize:60, textAlign: "center", padding:10}}>{question}</Text>
     </View>
   );
 }
