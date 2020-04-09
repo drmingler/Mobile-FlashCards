@@ -2,11 +2,7 @@ export const GET_DECKS = "GET_DECKS";
 export const ADD_CARDS_TO_DECK = "ADD_CARDS_TO_DECK";
 export const ADD_DECK_TITLE = "ADD_DECK_TITLE";
 export const REMOVE_DECK = "REMOVE_DECK";
-import {
-  _saveDeckTitle,
-  _getDecks,
-  _addCardToDeck,
-} from "../utils/api";
+import { _saveDeckTitle, _getDecks, _addCardToDeck } from "../utils/api";
 
 // Action to set the deck title
 export function getDecks(decks) {
@@ -43,20 +39,15 @@ export function remove(title) {
 // Async action to add card to deck requires  title, card as an object
 export function handleAddingCardToDeck(data) {
   return dispatch => {
-    _addCardToDeck(data).then(() => {
-      dispatch(addCardToADeck(data));
-    });
+    // Get the deck title from the card
+    // const { title } = data;
+    _addCardToDeck(data)
+      .then(() => {
+        dispatch(addCardToADeck(data));
+      })
+      // .catch(dispatch(remove(title)));
   };
 }
-
-// Async action to get all available decks
-// export function handleGetDeck() {
-//   return dispatch => {
-//     _getDecks().then(decks => {
-//       dispatch(getDecks(decks));
-//     });
-//   };
-// }
 
 // Async action to add title of a new decks
 export function handleAddDeckTitle(title) {
@@ -66,4 +57,3 @@ export function handleAddDeckTitle(title) {
     });
   };
 }
-

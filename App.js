@@ -5,17 +5,15 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./src/reducers/Shared";
 import middleware from "./src/middleware/index";
-import NewDeck from "./src/component/NewDeck";
+import AddCard from "./src/component/AddCard";
 import styled from "styled-components";
-import {connect} from "react-redux"
 
 class App extends React.Component {
-
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <Container>
-          <NewDeck />
+          <AddCard />
         </Container>
       </Provider>
     );

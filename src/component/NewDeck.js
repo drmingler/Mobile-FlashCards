@@ -10,6 +10,7 @@ import { purple, red } from "../utils/colors";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/Shared";
+import { handleAddDeckTitle } from "../actions/Deck";
 
 class NewDeck extends React.Component {
   componentDidMount() {
@@ -33,6 +34,9 @@ class NewDeck extends React.Component {
     if (titlesInDeck.includes(formInput)) {
       return this.setState({ titleAlreadyExist: true });
     }
+    // Dispatch an action to add the deck title
+    this.props.dispatch(handleAddDeckTitle(formInput));
+
     // I will redirect to page Decklist page
     console.log("I will redirect to page Decklist page");
   };
@@ -64,14 +68,14 @@ class NewDeck extends React.Component {
               placeholder="Enter A Deck Title Here"
               onChangeText={this.handleChange}
               maxLength={12}
-              style={formInput ? { borderColor: purple } : null}
+              style={formInput && { borderColor: purple }}
             />
             {titleAlreadyExist === true ? (
               <Error> This title already exist try another title </Error>
             ) : null}
 
             <SubmitButton
-              onPress={text => (formInput ? this.handleSubmit(text) : null)}
+              onPress={text => formInput && this.handleSubmit(text)}
             >
               <ButtonText>Submit</ButtonText>
             </SubmitButton>
@@ -107,7 +111,7 @@ const AndroidSubmitBtn = styled.TouchableOpacity`
   width : 70%;
   border-radius: 5px;
   margin: 10px;
-  margin-top : 30px;
+  
 `;
 
 const IosAddCardBtn = styled.TouchableOpacity`
@@ -135,7 +139,14 @@ const Error = styled.Text`
   color: red;
   text-align: left;
   padding-right: 5px;
-  margin-top: -20px;
+  ${Platform.select({
+    ios: css`
+      margin-top: -20px;
+    `,
+    android: css`
+      margin-top: 2px;
+    `
+  })}
 `;
 function mapStateToProps({ Deck }) {
   return {
