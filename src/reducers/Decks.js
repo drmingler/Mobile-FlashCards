@@ -3,10 +3,10 @@ import {
   ADD_CARDS_TO_DECK,
   ADD_DECK_TITLE,
   REMOVE_DECK
-} from "../actions/Deck";
+} from "../actions/Decks";
 
-// Reducer updating the state of the deck in the store
-export default function deck(state = {}, action) {
+// Reducer updating the state of the decks in the store
+export default function Decks(state = {}, action) {
   switch (action.type) {
     case GET_DECKS:
       return {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Platform, StyleSheet, Text, View } from "react-native";
 
 /* The DeckListItem is a functional component it  displays
-the deck name and the number of cards it has */
+the decks name and the number of cards it has */
 export default function DeckListItem({ title, questions }) {
   const numberOfCards = questions.length;
   const ItemIos = styled.TouchableOpacity`

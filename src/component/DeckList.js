@@ -5,8 +5,7 @@ import DeckListItem from "./DeckListItems";
 import styled from "styled-components";
 import { handleInitialData, handleRemoveDeck } from "../actions/Shared";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { handleAddingCardToDeck, handleAddDeckTitle } from "../actions/Deck";
-import { addScore } from "../actions/Score";
+import { handleAddingCardToDeck, handleAddDeckTitle } from "../actions/Decks";
 import { purple } from "../utils/colors";
 
 // I will add should component update for optimization
@@ -27,8 +26,8 @@ class DeckList extends React.Component {
   }
 
   render() {
-    const { Deck } = this.props;
-    if (Object.keys(Deck).length === 0) {
+    const { Decks } = this.props;
+    if (Object.keys(Decks).length === 0) {
       return (
         <Center>
           {Platform.OS === "ios" ? (
@@ -51,21 +50,21 @@ class DeckList extends React.Component {
     return (
       <Container>
         <FlatList
-          data={Object.values(Deck)}
+          data={Object.values(Decks)}
           renderItem={({ item }) => (
             <DeckListItem title={item.title} questions={item.questions} />
           )}
           keyExtractor={item => item.title}
-          extraData={Deck}
+          extraData={Decks}
         />
       </Container>
     );
   }
 }
 
-function mapStateToProps({ Deck }) {
+function mapStateToProps({ Decks }) {
   return {
-    Deck
+    Decks
   };
 }
 export default connect(mapStateToProps)(DeckList);

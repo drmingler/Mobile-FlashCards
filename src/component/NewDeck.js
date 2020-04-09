@@ -10,7 +10,7 @@ import { purple, red } from "../utils/colors";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/Shared";
-import { handleAddDeckTitle } from "../actions/Deck";
+import { handleAddDeckTitle } from "../actions/Decks";
 
 class NewDeck extends React.Component {
   componentDidMount() {
@@ -27,14 +27,14 @@ class NewDeck extends React.Component {
   /* Check if the title entered by the user already exists
    *  and submit the form only if it has an input */
   handleSubmit = () => {
-    const { Deck } = this.props;
+    const { Decks } = this.props;
     const { formInput } = this.state;
-    const titlesInDeck = Object.keys(Deck);
+    const titlesInDeck = Object.keys(Decks);
 
     if (titlesInDeck.includes(formInput)) {
       return this.setState({ titleAlreadyExist: true });
     }
-    // Dispatch an action to add the deck title
+    // Dispatch an action to add the decks title
     this.props.dispatch(handleAddDeckTitle(formInput));
 
     // I will redirect to page Decklist page
@@ -49,7 +49,7 @@ class NewDeck extends React.Component {
       <KeyboardAvoidingView behavior={"padding"} style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
-            <Title> What is the title of your deck?</Title>
+            <Title> What is the title of your decks?</Title>
             {Platform.OS === "ios" ? (
               <Ionicons
                 name={"ios-albums"}
@@ -148,9 +148,9 @@ const Error = styled.Text`
     `
   })}
 `;
-function mapStateToProps({ Deck }) {
+function mapStateToProps({ Decks }) {
   return {
-    Deck
+    Decks
   };
 }
 export default connect(mapStateToProps)(NewDeck);

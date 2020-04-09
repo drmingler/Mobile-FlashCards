@@ -89,12 +89,6 @@ const ButtonText = styled.Text`
   color: white;
 `;
 
-{
-  /*<ButtonStyle style={{backgroundColor:white, borderWidth:1}}> */
-}
-{
-  /*<ButtonText style={{ color: black }}>Add Card</BtnText>*/
-}
 
 // I will get the title and question length from the DeckList route
 export default DeckCard;

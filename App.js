@@ -7,13 +7,14 @@ import reducer from "./src/reducers/Shared";
 import middleware from "./src/middleware/index";
 import AddCard from "./src/component/AddCard";
 import styled from "styled-components";
+import Quiz from "./src/component/Quiz";
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <Container>
-          <AddCard />
+          <Quiz />
         </Container>
       </Provider>
     );

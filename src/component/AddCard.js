@@ -2,7 +2,6 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
   KeyboardAvoidingView,
@@ -10,10 +9,10 @@ import {
 } from "react-native";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { handleAddingCardToDeck } from "../actions/Deck";
+import { handleAddingCardToDeck } from "../actions/Decks";
 
 
-// I will take the title of the deck from the newdeck route route
+// I will take the title of the decks from the newdeck route route
 class AddCard extends React.Component {
   state = {
     question: "",
@@ -21,14 +20,14 @@ class AddCard extends React.Component {
   };
 
 
-  // I will take the title of the deck from the newdeck route route
-  // onSubmit dispatch an action to add card to deck and redirect
+  // I will take the title of the decks from the newdeck route route
+  // onSubmit dispatch an action to add card to decks and redirect
   handleSubmit = () => {
     const { question, answer } = this.state;
     const title = "JavaScript";
     const card = { answer, question };
     this.props.dispatch(handleAddingCardToDeck({ title, card }));
-    console.log("I will redirect back to card deck page");
+    console.log("I will redirect back to card decks page");
   };
   render() {
     const SubmitButton =

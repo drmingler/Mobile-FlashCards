@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import Deck from "../reducers/Deck";
+import Decks from "./Decks";
 import Score from "../reducers/Score";
 
 export default combineReducers({
-  Deck,
+  Decks,
   Score
 });
