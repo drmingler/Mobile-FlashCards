@@ -16,7 +16,7 @@ class DeckList extends React.Component {
   }
 
   render() {
-    const { Decks } = this.props;
+    const { Decks, navigation } = this.props;
     if (Object.keys(Decks).length === 0) {
       return (
         <Center>
@@ -42,7 +42,11 @@ class DeckList extends React.Component {
         <FlatList
           data={Object.values(Decks)}
           renderItem={({ item }) => (
-            <DeckListItem title={item.title} questions={item.questions} />
+            <DeckListItem
+              title={item.title}
+              questions={item.questions}
+              navigation={navigation}
+            />
           )}
           keyExtractor={item => item.title}
           extraData={Decks}

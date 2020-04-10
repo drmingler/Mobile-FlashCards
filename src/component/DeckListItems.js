@@ -1,10 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import DeckCard from "./DeckCard";
 
-/* The DeckListItem  displays the  name of each
-deck name and the number of cards it has */
+/* The DeckListItem  displays the  name of each deck
+name and the number of cards it has. it receives the
+navigation object as a prop to enable redirection from
+this component to another component*/
+
+
 class DeckListItem extends React.Component {
+  handleClick = title => {
+    const { navigation } = this.props;
+    // Redirect to the card screen along with the title or id of the selected card
+    navigation.navigate("Card", { title: title });
+  };
+
   render() {
     const { title, questions } = this.props;
     const numberOfCards = questions.length;
@@ -12,9 +23,8 @@ class DeckListItem extends React.Component {
     return (
       <Item
         key={title}
-        // I will redirect to the add deckcard page with the title and question length
         onPress={() => {
-          console.log(title);
+          this.handleClick(title);
         }}
       >
         <View>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Platform } from "react-native";
 import styled from "styled-components";
-
+import {connect} from  "react-redux";
 class DeckCard extends React.Component {
   render() {
     const numOfCards = 2;
@@ -89,6 +89,13 @@ const ButtonText = styled.Text`
   color: white;
 `;
 
+function mapStateToProps({Decks}, {route, navigation}) {
+  const { title } = route.params;
+  return {
+    card : Decks[title]
+  }
+
+}
 
 // I will get the title and question length from the DeckList route
-export default DeckCard;
+export default connect()(DeckCard);
