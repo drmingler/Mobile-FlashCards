@@ -18,6 +18,8 @@ import { StatusBar } from "react-native";
 import DeckCard from "./src/component/DeckCard";
 import NewDeck from "./src/component/NewDeck";
 import { purple, white } from "./src/utils/colors";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { black } from "color-name";
 
 function MyStatusBar({ backgroundColor, ...props }) {
   return (
@@ -33,9 +35,8 @@ function DeckComponents() {
   return (
     <DeckStack.Navigator
       screenOptions={{
-        headerShown: header,
-      }
-      }
+        headerShown: header
+      }}
     >
       <DeckStack.Screen name={"Decks"} component={DeckList} />
       <DeckStack.Screen name={"Card"} component={DeckCard} />
@@ -74,7 +75,40 @@ class App extends React.Component {
             backgroundColor={Platform.OS === "ios" ? white : purple}
           />
           <NavigationContainer>
-            <Tab.Navigator>
+            <Tab.Navigator
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                  let iconName;
+
+                  if (route.name === "Decks") {
+                    iconName = focused
+                      ? "ios-list-box"
+                      : "ios-list";
+                  } else if (route.name === "NewDeck") {
+                    iconName = "ios-create";
+                  }
+
+                  return <Ionicons name={iconName} size={size} color={color} />;
+                }
+              })}
+              tabBarOptions={{
+                activeTintColor: Platform.OS === "ios" ? purple : black,
+                style: {
+                  height: 56,
+                  backgroundColor: white,
+                  shadowColor: "rgba(0, 0, 0, 0.24)",
+                  paddingBottom: 10,
+                  paddingTop: 7,
+
+                  shadowOffset: {
+                    width: 0,
+                    height: 3
+                  },
+                  shadowRadius: 6,
+                  shadowOpacity: 1
+                }
+              }}
+            >
               <Tab.Screen name="Decks" component={DeckComponents} />
               <Tab.Screen name="NewDeck" component={UserComponent} />
             </Tab.Navigator>
