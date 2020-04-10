@@ -1,14 +1,13 @@
-
 // formatCard returns all the data needed by the quiz component in an easy to use format
-export function formatCard(decks,title) {
-    const card = decks[title].questions;
-    const totalCardsInDeck = card.length;
-    //const cardIterator = card[Symbol.iterator]();
-    return {
-       card,
-       //  cardIterator,
-        totalCardsInDeck
-    }
+export function formatCard(decks, title) {
+  const card = decks[title].questions;
+  const totalCardsInDeck = card.length;
+  return {
+    card,
+    totalCardsInDeck
+  };
+}
 
-
+export function percentageScore(totalScore, score) {
+  return ((score / totalScore)*100).toFixed();
 }

@@ -5,7 +5,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./src/reducers/Shared";
 import middleware from "./src/middleware/index";
-import AddCard from "./src/component/AddCard";
+import Score from "./src/component/Score";
 import styled from "styled-components";
 import Quiz from "./src/component/Quiz";
 
@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <Container>
-          <Quiz />
+          <Score />
         </Container>
       </Provider>
     );
