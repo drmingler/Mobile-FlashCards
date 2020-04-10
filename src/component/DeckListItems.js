@@ -8,7 +8,7 @@ export default function DeckListItem({ title, questions }) {
   const numberOfCards = questions.length;
   const ItemIos = styled.TouchableOpacity`
     margin-top: 17px;
-    background: red;
+    background: grey;
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 8px;

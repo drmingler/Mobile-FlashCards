@@ -12,16 +12,16 @@ import { purple } from "../utils/colors";
 /* DeckList lists all the available  decks in the store */
 class DeckList extends React.Component {
   componentDidMount() {
-    const card = {
-      question: 'What is a ruby?',
-      answer: 'A programming language'
-    };
-    const title = 'ruby';
-    //
+    // const card = {
+    //   question: 'What is a ruby?',
+    //   answer: 'A programming language'
+    // };
+    // const title = 'ruby';
+    // //
     this.props.dispatch(handleInitialData());
     // this.props.dispatch(handleAddDeckTitle(title));
     // this.props.dispatch(handleRemoveDeck(title));
-    this.props.dispatch(handleAddingCardToDeck({ title, card }));
+    // this.props.dispatch(handleAddingCardToDeck({ title, card }));
     // // this.props.dispatch(addScore(3));
   }
 
