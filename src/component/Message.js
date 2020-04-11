@@ -13,7 +13,7 @@ export default function Message() {
       />
 
       <Text style={{ fontSize: 25, padding: 30, textAlign: "center" }}>
-        This Card Doesn't Exist Please A Card To The Deck
+        You Do Not Have Any Card In The Deck Please Add A Card
       </Text>
     </View>
   );
