@@ -1,10 +1,10 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity, Alert } from "react-native";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import Message from "./Message";
-class DeckCard extends React.Component {
+import { handleRemoveDeck } from "../actions/Shared";
 
+class DeckCard extends React.Component {
   // Route to add card screen with title of card
   handleAddCard = () => {
     const { title, navigation } = this.props;
@@ -15,6 +15,24 @@ class DeckCard extends React.Component {
   handleStartQuiz = () => {
     const { title, navigation } = this.props;
     navigation.navigate("Quiz", { title: title });
+  };
+
+  // Route to Decks screen when a Deck is deleted
+  handleDelete = () => {
+    const { title, navigation, dispatch } = this.props;
+    Alert.alert("Delete Deck", "Are You Sure You Want To Delete The Deck?", [
+      {
+        text: "Yes",
+        onPress: () => {
+          dispatch(handleRemoveDeck(title));
+          navigation.navigate("Decks");
+        }
+      },
+      {
+        text: "No",
+        style: "cancel"
+      }
+    ]);
   };
 
   render() {
@@ -39,6 +57,9 @@ class DeckCard extends React.Component {
           <ButtonStyle onPress={this.handleStartQuiz}>
             <ButtonText>Start Quiz</ButtonText>
           </ButtonStyle>
+          <TouchableOpacity onPress={this.handleDelete}>
+            <DeleteButton>Delete Deck</DeleteButton>
+          </TouchableOpacity>
         </CardButtonsContainer>
       </Container>
     );
@@ -51,7 +72,7 @@ const Container = styled.View`
 `;
 
 const DeckInfoContainer = styled.View`
-  flex : 3
+  flex : 1.5
   align-items : center;
   justify-content : center;
 `;
@@ -93,6 +114,13 @@ const ButtonText = styled.Text`
   color: white;
 `;
 
+const DeleteButton = styled.Text`
+  padding: 30px;
+  font-size: 20px;
+  text-align: center;
+  color: red;
+`;
+
 function mapStateToProps({ Decks }, { route, navigation }) {
   const { title } = route.params;
   console.log("From Card");
@@ -102,7 +130,7 @@ function mapStateToProps({ Decks }, { route, navigation }) {
     title,
     navigation,
     card,
-    numOfCards: card? card.questions.length : 0
+    numOfCards: card ? card.questions.length : 0
   };
 }
 
