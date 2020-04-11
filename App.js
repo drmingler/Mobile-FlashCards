@@ -1,7 +1,6 @@
 import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, View } from "react-native";
 import DeckList from "./src/component/DeckList";
-import Score from "./src/component/Quiz";
 import Quiz from "./src/component/Quiz";
 import AddCard from "./src/component/AddCard";
 import { createStore } from "redux";
@@ -39,28 +38,30 @@ function DeckComponents() {
       }}
     >
       <DeckStack.Screen name={"Decks"} component={DeckList} />
-      <DeckStack.Screen name={"Card"} component={DeckCard} />
+      <DeckStack.Screen name={"Deck"} component={DeckCard} />
       <DeckStack.Screen name={"Quiz"} component={Quiz} />
-      <DeckStack.Screen name={"Score"} component={Score} />
+      {/*<DeckStack.Screen name={"Score"} component={Score} />*/}
+      <DeckStack.Screen name={"NewDeck"} component={NewDeck} />
+      <DeckStack.Screen name={"AddCard"} component={AddCard} />
     </DeckStack.Navigator>
   );
 }
 
 // Stack Navigator for every component that has to do with a user entering an input
-const UserStack = createStackNavigator();
-function UserComponent() {
-  const header = Platform.OS === "ios";
-  return (
-    <UserStack.Navigator
-      screenOptions={{
-        headerShown: header
-      }}
-    >
-      <UserStack.Screen name={"NewDeck"} component={NewDeck} />
-      <UserStack.Screen name={"AddCard"} component={AddCard} />
-    </UserStack.Navigator>
-  );
-}
+// const UserStack = createStackNavigator();
+// function UserComponent() {
+//   const header = Platform.OS === "ios";
+//   return (
+//     <UserStack.Navigator
+//       screenOptions={{
+//         headerShown: header
+//       }}
+//     >
+//       <UserStack.Screen name={"NewDeck"} component={NewDeck} />
+//       <UserStack.Screen name={"AddCard"} component={AddCard} />
+//     </UserStack.Navigator>
+//   );
+// }
 
 class App extends React.Component {
   render() {
@@ -110,7 +111,8 @@ class App extends React.Component {
               }}
             >
               <Tab.Screen name="Decks" component={DeckComponents} />
-              <Tab.Screen name="NewDeck" component={UserComponent} />
+              {/*<Tab.Screen name="NewDeck" component={UserComponent} />*/}
+              <Tab.Screen name={"NewDeck"} component={NewDeck} />
             </Tab.Navigator>
           </NavigationContainer>
         </Container>

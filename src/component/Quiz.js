@@ -5,9 +5,9 @@ import Answer from "../component/Answer";
 import Question from "../component/Question";
 import { formatCard } from "../utils/helpers";
 import { connect } from "react-redux";
-import { handleInitialData } from "../actions/Shared";
-import { addScore } from "../actions/Score";
+import { addScore, resetScore } from "../actions/Score";
 import Message from "./Message";
+import Score from "./Score";
 
 class Quiz extends React.Component {
   /* Store the number of the card that is currently being displayed
@@ -19,7 +19,7 @@ class Quiz extends React.Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(handleInitialData());
+    this.props.dispatch(resetScore());
   }
 
   handleToggle = () => {
@@ -40,27 +40,29 @@ class Quiz extends React.Component {
   render() {
     // Get the following variables from the component state
     const { currentindex, showAnswer, cardNumber } = this.state;
+    const { formattedCard, navigation} = this.props;
+    const { card, totalCardsInDeck } = formattedCard;
 
     // If the card does not exist render the message component
-    const { formattedCard } = this.props;
     if (!formattedCard || formattedCard.totalCardsInDeck === 0) {
       return <Message />;
     }
 
-    const { card, totalCardsInDeck } = formattedCard;
+    // If all the questions in a card has been answered
     if (card[currentindex] === undefined) {
-      // I will navigate to the score board route
-      return null;
+      // Render the score component passing it navigation and total cards in deck as props;
+      return <Score totalCardsInDeck={totalCardsInDeck} navigation={navigation}/>;
     }
 
-    // Get the question and answer from the card using the current index in the state to index the card object
+    /* Get the question and answer from the card using the
+    current index in the state to index the card object*/
     const { question, answer } = card[currentindex];
     const SubmitButton =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidSubmitBtn;
 
     return (
       <Container>
-        <Text style={{fontSize:20}}>
+        <Text style={{ fontSize: 20 }}>
           {cardNumber} / {totalCardsInDeck}
         </Text>
         <Card>
@@ -92,6 +94,14 @@ class Quiz extends React.Component {
     );
   }
 }
+// I will get title from the newDeck Card route
+function mapStateToProps({ Decks, score }, { route }) {
+  const { title } = route.params;
+  return {
+    formattedCard: Decks[title] ? formatCard(Decks, title) : null
+  };
+}
+export default connect(mapStateToProps)(Quiz);
 
 const Container = styled.View`
   flex: 1;
@@ -101,8 +111,7 @@ const Container = styled.View`
 `;
 
 const Card = styled.View`
-
-margin-bottom : 100px
+  margin-bottom: 100px;
 `;
 
 const Toggle = styled.Text`
@@ -132,12 +141,3 @@ const ButtonText = styled.Text`
   text-align: center;
   color: white;
 `;
-// I will get title from the newDeck Card route
-function mapStateToProps({ Decks, score }) {
-  const title = "Python";
-  return {
-    score,
-    formattedCard: Decks[title] ? formatCard(Decks, title) : null
-  };
-}
-export default connect(mapStateToProps)(Quiz);

@@ -8,6 +8,6 @@ export function formatCard(decks, title) {
   };
 }
 
-export function percentageScore(totalScore, score) {
-  return ((score / totalScore)*100).toFixed();
+export function calcPercentageScore(totalCardsInDeck, score) {
+  return ((score / totalCardsInDeck) * 100).toFixed();
 }

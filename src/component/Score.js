@@ -1,33 +1,33 @@
 import React from "react";
 import { Text, Platform, View, TouchableOpacity } from "react-native";
-import { percentageScore } from "../utils/helpers";
+import { calcPercentageScore, formatCard } from "../utils/helpers";
 import styled from "styled-components";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { resetScore } from "../actions/Score";
 
-// I Need the score and the number of answered questions
-// I  Total number of cards in deck
-// Id of the card
 class Score extends React.Component {
   restart = () => {
     this.props.dispatch(resetScore());
     // Navigate to quiz page with the title
+    // this.props.navigation.navigate("Quiz", {title:"Python"})
   };
   toDeck = () => {
     this.props.dispatch(resetScore());
-    // Navigate to deck page with the title
+    // Navigate to deck page with
+    this.props.navigation.navigate("Deck")
   };
-  render() {
-    // Get te percentage score from the store
-    const score = percentageScore(4, 1);
-    return (
 
+  render() {
+    // Get the final score from the store
+    const { finalScore } = this.props;
+
+    return (
       <Container>
         <View>
-          <ScoreContainer>Your Score Was</ScoreContainer>
+          <ScoreContainer>Your Score Is</ScoreContainer>
           <ScoreContainer style={{ marginBottom: 50, marginTop: 50 }}>
-            {score}%
+            {finalScore}%
           </ScoreContainer>
         </View>
         <Options>
@@ -45,7 +45,15 @@ class Score extends React.Component {
   }
 }
 
-export default connect()(Score);
+// Calculate the percentage score with the help of the calcPercentageScore helper function
+
+function mapStateToProps({ Score }, { totalCardsInDeck }) {
+  const finalScore = calcPercentageScore(totalCardsInDeck, Score);
+  return {
+    finalScore
+  };
+}
+export default connect(mapStateToProps)(Score);
 
 const Container = styled.View`
   flex: 1;
