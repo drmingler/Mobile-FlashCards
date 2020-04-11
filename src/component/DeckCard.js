@@ -1,11 +1,24 @@
 import React from "react";
 import { Platform } from "react-native";
 import styled from "styled-components";
-import {connect} from  "react-redux";
+import { connect } from "react-redux";
 class DeckCard extends React.Component {
+
+  // Route to add card screen with title of card
+  handleAddCard = () => {
+    const { title, navigation } = this.props;
+    navigation.navigate("AddCard", { title: title });
+  };
+
+  // Route to Quiz screen with the title of card
+  handleStartQuiz = () => {
+    const { title, navigation } = this.props;
+    navigation.navigate("Quiz", { title: title });
+  };
+
   render() {
-    const numOfCards = 2;
-    const title = "Javascript";
+    const { title, numOfCards } = this.props;
+
     const ButtonStyle =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidAddCardBtn;
     return (
@@ -19,20 +32,10 @@ class DeckCard extends React.Component {
           )}
         </DeckInfoContainer>
         <CardButtonsContainer>
-          <ButtonStyle
-            onPress={() =>
-                // Redirect to add card page with title of card
-              console.log("Add Card")
-            }
-          >
+          <ButtonStyle onPress={this.handleAddCard}>
             <ButtonText>Add Card</ButtonText>
           </ButtonStyle>
-          <ButtonStyle
-            onPress={() =>
-              // Redirect to add card page with title of card
-              console.log("Start Quiz")
-            }
-          >
+          <ButtonStyle onPress={this.handleStartQuiz}>
             <ButtonText>Start Quiz</ButtonText>
           </ButtonStyle>
         </CardButtonsContainer>
@@ -89,13 +92,17 @@ const ButtonText = styled.Text`
   color: white;
 `;
 
-function mapStateToProps({Decks}, {route, navigation}) {
+function mapStateToProps({ Decks }, { route, navigation }) {
   const { title } = route.params;
+  const card = Decks[title];
   return {
-    card : Decks[title]
-  }
+    title,
+    navigation,
+    card,
+    numOfCards: card.questions.length
 
+  };
 }
 
 // I will get the title and question length from the DeckList route
-export default connect()(DeckCard);
+export default connect(mapStateToProps)(DeckCard);
