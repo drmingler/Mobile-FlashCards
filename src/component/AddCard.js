@@ -11,7 +11,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { handleAddingCardToDeck } from "../actions/Decks";
 
-
 // I will take the title of the decks from the newdeck route route
 class AddCard extends React.Component {
   state = {
@@ -19,15 +18,25 @@ class AddCard extends React.Component {
     answer: ""
   };
 
-
-  // I will take the title of the decks from the newdeck route route
-  // onSubmit dispatch an action to add card to decks and redirect
+  /* onSubmit dispatch an action to add card to decks and redirect */
   handleSubmit = () => {
+    // Get the newly created question and answer from the state
     const { question, answer } = this.state;
-    const title = "JavaScript";
+
+    // Create a card object
     const card = { answer, question };
-    this.props.dispatch(handleAddingCardToDeck({ title, card }));
-    console.log("I will redirect back to card decks page");
+
+    // Get the following variables from the props
+    const { navigation, route, dispatch } = this.props;
+
+    // Get the title of the deck from the route
+    const { title } = route.params;
+
+    // Dispatch an action to add the card to the deck
+    dispatch(handleAddingCardToDeck({ title, card }));
+
+    // Route back to the Deck Page
+    navigation.goBack();
   };
   render() {
     const SubmitButton =
@@ -69,6 +78,8 @@ class AddCard extends React.Component {
   }
 }
 
+export default connect()(AddCard);
+
 const Container = styled.View`
   flex: 1;
   align-items: center;
@@ -107,5 +118,3 @@ const ButtonText = styled.Text`
   text-align: center;
   color: white;
 `;
-
-export default connect()(AddCard);

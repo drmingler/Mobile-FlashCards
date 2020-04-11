@@ -13,7 +13,7 @@ class DeckListItem extends React.Component {
   handleClick = title => {
     const { navigation } = this.props;
     // Redirect to the card screen along with the title or id of the selected card
-    navigation.navigate("Card", { title: title });
+    navigation.navigate("Deck", { title: title });
   };
 
   render() {
