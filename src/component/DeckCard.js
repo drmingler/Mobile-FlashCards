@@ -2,6 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import Message from "./Message";
 class DeckCard extends React.Component {
 
   // Route to add card screen with title of card
@@ -94,13 +95,14 @@ const ButtonText = styled.Text`
 
 function mapStateToProps({ Decks }, { route, navigation }) {
   const { title } = route.params;
+  console.log("From Card");
+  console.log(title);
   const card = Decks[title];
   return {
     title,
     navigation,
     card,
-    numOfCards: card.questions.length
-
+    numOfCards: card? card.questions.length : 0
   };
 }
 

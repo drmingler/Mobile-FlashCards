@@ -39,8 +39,11 @@ class NewDeck extends React.Component {
 
     // Reset the form state
     this.setState({ formInput: "" });
-    // Route to Decks screen
-    navigation.navigate("Decks");
+    console.log("From formInput");
+    console.log(formInput);
+    // Route to Deck screen
+    navigation.navigate("Deck",{title:formInput});
+
   };
 
   render() {
