@@ -27,7 +27,7 @@ class NewDeck extends React.Component {
   /* Check if the title entered by the user already exists
    *  and submit the form only if it has an input */
   handleSubmit = () => {
-    const { Decks } = this.props;
+    const { Decks, navigation, dispatch } = this.props;
     const { formInput } = this.state;
     const titlesInDeck = Object.keys(Decks);
 
@@ -35,10 +35,12 @@ class NewDeck extends React.Component {
       return this.setState({ titleAlreadyExist: true });
     }
     // Dispatch an action to add the decks title
-    this.props.dispatch(handleAddDeckTitle(formInput));
+    dispatch(handleAddDeckTitle(formInput));
 
-    // I will redirect to page Decklist page
-    console.log("I will redirect to page Decklist page");
+    // Reset the form state
+    this.setState({ formInput: "" });
+    // Route to Decks screen
+    navigation.navigate("Decks");
   };
 
   render() {
