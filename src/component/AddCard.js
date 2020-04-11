@@ -35,8 +35,8 @@ class AddCard extends React.Component {
     // Dispatch an action to add the card to the deck
     dispatch(handleAddingCardToDeck({ title, card }));
 
-    // Route back to the Deck Page
-    navigation.goBack();
+    // Route back to the Decks Screen
+    navigation.navigate("Decks");
   };
   render() {
     const SubmitButton =

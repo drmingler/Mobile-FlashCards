@@ -3,20 +3,23 @@ import { Text, FlatList, Platform } from "react-native";
 import { connect } from "react-redux";
 import DeckListItem from "./DeckListItems";
 import styled from "styled-components";
-import { handleInitialData, handleRemoveDeck } from "../actions/Shared";
+import { handleInitialData } from "../actions/Shared";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { handleAddingCardToDeck, handleAddDeckTitle } from "../actions/Decks";
 import { purple } from "../utils/colors";
+
 
 // I will add should component update for optimization
 /* DeckList lists all the available  decks in the store */
 class DeckList extends React.Component {
+
   componentDidMount() {
-    this.props.dispatch(handleInitialData());
+    const {getInitialData} = this.props;
+    getInitialData()
   }
 
   render() {
     const { Decks, navigation } = this.props;
+
     if (Object.keys(Decks).length === 0) {
       return (
         <Center>
@@ -55,13 +58,19 @@ class DeckList extends React.Component {
     );
   }
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    getInitialData: () => dispatch(handleInitialData())
+  };
+}
 
 function mapStateToProps({ Decks }) {
+  console.log(Decks);
   return {
     Decks
   };
 }
-export default connect(mapStateToProps)(DeckList);
+export default connect(mapStateToProps,mapDispatchToProps)(DeckList);
 
 const Container = styled.SafeAreaView`
   flex: 1;
