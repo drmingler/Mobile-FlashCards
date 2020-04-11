@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { addScore, resetScore } from "../actions/Score";
 import Message from "./Message";
 import Score from "./Score";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 class Quiz extends React.Component {
   /* Store the number of the card that is currently being displayed
@@ -37,21 +38,41 @@ class Quiz extends React.Component {
       cardNumber: prevState.cardNumber + 1
     }));
   };
+
+  restart = () => {
+    this.props.dispatch(resetScore());
+    // Reset the state
+    this.setState({
+      currentindex: 0,
+      cardNumber: 1
+    });
+  };
+
   render() {
     // Get the following variables from the component state
     const { currentindex, showAnswer, cardNumber } = this.state;
-    const { formattedCard, navigation} = this.props;
-    const { card, totalCardsInDeck } = formattedCard;
 
-    // If the card does not exist render the message component
+    // Get the following variables from the  store
+    const { formattedCard, navigation } = this.props;
+
+    // If there is no card in the deck render the message component
     if (!formattedCard || formattedCard.totalCardsInDeck === 0) {
       return <Message />;
     }
 
-    // If all the questions in a card has been answered
+    const { card, totalCardsInDeck } = formattedCard;
+
+    // Check If all the questions in a card has been answered
     if (card[currentindex] === undefined) {
       // Render the score component passing it navigation and total cards in deck as props;
-      return <Score totalCardsInDeck={totalCardsInDeck} navigation={navigation}/>;
+      return (
+        <Score totalCardsInDeck={totalCardsInDeck} navigation={navigation}>
+          <TouchableOpacity style={{ padding: 10 }} onPress={this.restart}>
+            <MaterialCommunityIcons name={"restart"} size={100} />
+            <OptionText>Restart</OptionText>
+          </TouchableOpacity>
+        </Score>
+      );
     }
 
     /* Get the question and answer from the card using the
@@ -97,6 +118,7 @@ class Quiz extends React.Component {
 // I will get title from the newDeck Card route
 function mapStateToProps({ Decks, score }, { route }) {
   const { title } = route.params;
+  console.log( Decks )
   return {
     formattedCard: Decks[title] ? formatCard(Decks, title) : null
   };
@@ -125,8 +147,6 @@ const AndroidSubmitBtn = styled.TouchableOpacity`
   background : grey;
   width : 70%;
   border-radius: 5px;
-  
-  
 `;
 
 const IosAddCardBtn = styled.TouchableOpacity`
@@ -140,4 +160,9 @@ const ButtonText = styled.Text`
   font-size: 20px;
   text-align: center;
   color: white;
+`;
+
+const OptionText = styled.Text`
+  text-align: center;
+  font-size: 15px;
 `;

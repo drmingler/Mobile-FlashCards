@@ -2072,10 +2072,10 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
-"@react-native-community/masked-view@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.7.tgz#a65ce0702f55cb67fd777995de6fc7b3e5781903"
-  integrity sha512-9KbP7LTLFz9dx1heURJbO6nuVMdSjDez8znlrUzaB1nUwKVsTTwlKRuHxGUYIIkReLWrJQeCv9tidy+84z2eCw==
+"@react-native-community/masked-view@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.8.tgz#05c9c800f258274a34abd584596464b86fbd92dc"
+  integrity sha512-y+mnsPPC4Etzs/waHIC9Pj3DwhVQGqVru0n1KSqHZc0moKNAZ0NRBWYVat9awLIjjVrnepUva/+/bi31T4hR4A==
 
 "@react-navigation/bottom-tabs@^5.2.6":
   version "5.2.6"
@@ -2125,6 +2125,14 @@
   integrity sha512-hU9ize/NPHS5wWR5KVx/cgN9DH29Y9iHa+SxUd3IJmBnK8ujj0rM8xz3hihY4yfu0kOvTFOPHojoBwnpH5cs+g==
   dependencies:
     nanoid "^3.0.2"
+
+"@react-navigation/stack@^5.2.10":
+  version "5.2.10"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.2.10.tgz#a2c8ff7f2da8f0d5cb04351379106ee9b8ef7dd8"
+  integrity sha512-QOx+ak+nLox9h4iwxL6+eJ6ndo4C43BVibN8/EWLydvcHB078eqSCKB77PS6XsohGGe0xbD/+jTOYbvPpfpjGw==
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
 
 "@segment/loosely-validate-event@^2.0.0":
   version "2.0.0"
@@ -11150,6 +11158,11 @@ react-native-screens@^2.4.0:
   dependencies:
     debounce "^1.2.0"
 
+react-native-tab-view@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.14.0.tgz#dd801f82fdb8e92fce9688b78d13923f3a5a2b3f"
+  integrity sha512-Z7XAM3NsMB96c17e9EAveunk7SUgilXWwVUTmWI1u/+p2SeOMUOB87z+//UXrcVlD1e9BPweR73q7dq7krTzTg==
+
 react-native-unimodules@~0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/react-native-unimodules/-/react-native-unimodules-0.8.1.tgz#c556c97d334d68786b1c9678ceea72e2e3e3e115"
@@ -11392,6 +11405,11 @@ recursive-readdir@2.2.2:
   integrity sha512-nRCcW9Sj7NuZwa2XvH9co8NPeXUBhZP7CRKJtU+cS6PW9FpCIFoI5ib0NT1ZrbNuPoRy0ylyCaUL8Gih4LSyFg==
   dependencies:
     minimatch "3.0.4"
+
+redux-devtools-extension@^2.13.8:
+  version "2.13.8"
+  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+  integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
 
 redux-thunk@^2.3.0:
   version "2.3.0"

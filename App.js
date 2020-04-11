@@ -8,17 +8,19 @@ import { Provider } from "react-redux";
 import reducer from "./src/reducers/Shared";
 import middleware from "./src/middleware/index";
 import styled from "styled-components";
-import Constants from "expo-constants";
+import Constants from "expo-constants";;
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
 import DeckCard from "./src/component/DeckCard";
+import Score from "./src/component/Score";
 import NewDeck from "./src/component/NewDeck";
 import { purple, white } from "./src/utils/colors";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { black } from "color-name";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 function MyStatusBar({ backgroundColor, ...props }) {
   return (
@@ -40,7 +42,7 @@ function DeckComponents() {
       <DeckStack.Screen name={"Decks"} component={DeckList} />
       <DeckStack.Screen name={"Deck"} component={DeckCard} />
       <DeckStack.Screen name={"Quiz"} component={Quiz} />
-      {/*<DeckStack.Screen name={"Score"} component={Score} />*/}
+      <DeckStack.Screen name={"Score"} component={Score} />
       <DeckStack.Screen name={"NewDeck"} component={NewDeck} />
       <DeckStack.Screen name={"AddCard"} component={AddCard} />
     </DeckStack.Navigator>
@@ -64,13 +66,14 @@ function DeckComponents() {
 // }
 
 class App extends React.Component {
+
   render() {
     const Tab =
       Platform.OS === "ios"
         ? createBottomTabNavigator()
         : createMaterialTopTabNavigator();
     return (
-      <Provider store={createStore(reducer, middleware)}>
+      <Provider store={createStore(reducer,composeWithDevTools(middleware))}>
         <Container>
           <MyStatusBar
             backgroundColor={Platform.OS === "ios" ? white : purple}
