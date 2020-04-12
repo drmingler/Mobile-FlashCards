@@ -7,15 +7,13 @@ import { handleInitialData } from "../actions/Shared";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { purple } from "../utils/colors";
 
-
 // I will add should component update for optimization
 /* DeckList lists all the available  decks in the store */
 class DeckList extends React.Component {
-
   componentDidMount() {
     // Get the decks from the database
-    const {getInitialData} = this.props;
-    getInitialData()
+    const { getInitialData } = this.props;
+    getInitialData();
   }
 
   render() {
@@ -28,16 +26,16 @@ class DeckList extends React.Component {
             <Ionicons
               name={"ios-albums"}
               size={200}
-              style={{ color: purple }}
+              style={{ color: "#e86c52"}}
             />
           ) : (
             <MaterialCommunityIcons
               name={"cards-playing-outline"}
               size={200}
-              style={{ color: purple }}
+              style={{ color: "#e86c52" }}
             />
           )}
-          <Text style={{ fontSize: 20 }}>You are yet to add any deck</Text>
+          <Text style={{ fontSize: 20 , color: "#eeedf2"}}>You are yet to add any deck</Text>
         </Center>
       );
     }
@@ -71,16 +69,17 @@ function mapStateToProps({ Decks }) {
     Decks
   };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(DeckList);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
 
 const Container = styled.SafeAreaView`
   flex: 1;
+  background-color: #e8e7ec; 
 `;
 
 const Center = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  margin-left: 30px;
-  margin-right: 30px;
+  background: #3f3e46;
 `;
+

@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
-import {white} from "../utils/colors";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 /* The DeckListItem  displays the  name of each deck
 name and the number of cards it has. it receives the
@@ -21,21 +20,28 @@ class DeckListItem extends React.Component {
     const numberOfCards = questions.length;
     return (
         <TouchableOpacity
-        key={title}
-        style={styles.item}
-        onPress={() => {
-          this.handleClick(title);
-        }}
-      >
-        <View>
-          <CardInfo>{title}</CardInfo>
-          {numberOfCards === 1 ? (
-            <CardInfo>{numberOfCards} card</CardInfo>
-          ) : (
-            <CardInfo>{numberOfCards} cards</CardInfo>
-          )}
-        </View>
-      </TouchableOpacity>
+          key={title}
+          style={styles.item}
+          onPress={() => {
+            this.handleClick(title);
+          }}
+        >
+          <View>
+            <View style={{ alignItems: "center" }}>
+              <MaterialCommunityIcons
+                name={"cards-playing-outline"}
+                size={100}
+                style={{ color: "#e86c52" }}
+              />
+            </View>
+            <CardInfo>{title}</CardInfo>
+            {numberOfCards === 1 ? (
+              <CardInfo>{numberOfCards} card</CardInfo>
+            ) : (
+              <CardInfo>{numberOfCards} cards</CardInfo>
+            )}
+          </View>
+        </TouchableOpacity>
     );
   }
 }
@@ -44,8 +50,8 @@ export default DeckListItem;
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: white,
-    padding: 60,
+    backgroundColor: "#020049",
+    padding: 20,
     marginTop: 20,
     marginLeft: 10,
     marginRight: 10,
@@ -63,4 +69,6 @@ const styles = StyleSheet.create({
 const CardInfo = styled.Text`
   font-size: 40px;
   text-align: center;
+  color: #eeedf2;
 `;
+

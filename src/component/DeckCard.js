@@ -1,12 +1,14 @@
 import React from "react";
 import { Platform, TouchableOpacity, Alert, Animated } from "react-native";
-import styled from "styled-components";
-import { connect } from "react-redux";
+import styled, {css} from "styled-components";
+import {connect} from "react-redux";
 import { handleRemoveDeck } from "../actions/Shared";
 import {
   clearLocalNotifications,
   setLocalNotification
 } from "../utils/helpers";
+
+import { gray, white } from "../utils/colors";
 
 class DeckCard extends React.Component {
   // The state that stores animations values
@@ -87,8 +89,15 @@ class DeckCard extends React.Component {
           <ButtonStyle onPress={this.handleAddCard}>
             <ButtonText>Add Card</ButtonText>
           </ButtonStyle>
-          <ButtonStyle onPress={this.handleStartQuiz}>
-            <ButtonText>Start Quiz</ButtonText>
+          <ButtonStyle
+            style={{
+              backgroundColor: white,
+              borderColor: gray,
+              borderWidth: 0.5
+            }}
+            onPress={this.handleStartQuiz}
+          >
+            <ButtonText style={{ color:'#18151e'}}>Start Quiz</ButtonText>
           </ButtonStyle>
           <TouchableOpacity onPress={this.handleDelete}>
             <DeleteButton>Delete Deck</DeleteButton>
@@ -102,28 +111,38 @@ class DeckCard extends React.Component {
 const Container = styled.View`
   flex: 1;
   justify-content: space-between;
+  background-color: #3f3e46;
 `;
 
 const DeckInfoContainer = styled.View`
-  flex : 1.5
+  flex : 1.2
   align-items : center;
   justify-content : center;
+ 
 `;
 const DeckTitle = styled.Text`
   font-size: 50px;
   padding: 20px;
+  color: #eeedf2;
 `;
 const CardNumber = styled.Text`
   font-size: 50px;
   padding: 20px;
-  color: gray;
+  color: #eeedf2;
 `;
 
 const CardButtonsContainer = styled.View`
   flex : 1
   align-items : center;
-  background-color: white;
+  background-color: #e8e7ec;
   padding-top: 30px;
+  justify-content : center;
+    ${Platform.select({
+  ios: css`
+      border-top-left-radius: 50px;
+       border-top-right-radius: 50px;
+    `
+})}
 `;
 
 const IosAddCardBtn = styled.TouchableOpacity`
@@ -132,6 +151,7 @@ const IosAddCardBtn = styled.TouchableOpacity`
   background: grey;
   width: 70%;
   border-radius: 50px;
+  background-color: #e86c52;
 `;
 const AndroidAddCardBtn = styled.TouchableOpacity`
   margin: 10px;
@@ -139,6 +159,7 @@ const AndroidAddCardBtn = styled.TouchableOpacity`
   width: 70%;
   background: grey;
   border-radius: 5px;
+  background-color: #e86c52;
 `;
 
 const ButtonText = styled.Text`

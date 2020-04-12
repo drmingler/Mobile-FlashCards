@@ -96,7 +96,7 @@ class App extends React.Component {
                 }
               })}
               tabBarOptions={{
-                activeTintColor: Platform.OS === "ios" ? purple : black,
+                activeTintColor: Platform.OS === "ios" ? "#e86c52" : black,
                 style: {
                   height: 56,
                   backgroundColor: white,

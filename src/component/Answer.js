@@ -1,11 +1,18 @@
 import React from "react";
 import { View, Text } from "react-native";
-
+import styled from "styled-components";
 // Answer Component renders the the answer
 export default function Answers({ answer }) {
   return (
     <View>
-      <Text style={{fontSize:60, textAlign: "center", padding : 10}}>{answer}</Text>
+      <AnswerText>{answer}</AnswerText>
     </View>
   );
 }
+
+const AnswerText = styled.Text`
+font-size : 60px;
+text-align : center;
+padding: 10px;
+color : #eeedf2;
+`;

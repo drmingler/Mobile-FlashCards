@@ -1,7 +1,7 @@
 import React from "react";
 import { Animated, View, TouchableOpacity } from "react-native";
 import { calcPercentageScore, formatCard } from "../utils/helpers";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { resetScore } from "../actions/Score";
@@ -30,17 +30,11 @@ class Score extends React.Component {
 
     return (
       <Container>
-        <View>
+        <ScoreView>
           <ScoreContainer as={Animated.Text} style={{ opacity: fadeIn }}>
-            Your Score Is
+            Your Score Is {finalScore}%
           </ScoreContainer>
-          <ScoreContainer
-            as={Animated.Text}
-            style={{ marginBottom: 50, marginTop: 50, opacity: fadeIn }}
-          >
-            {finalScore}%
-          </ScoreContainer>
-        </View>
+        </ScoreView>
         <OptionsContainer>
           <Options>
             <TouchableOpacity style={{ padding: 10 }} onPress={this.toDeck}>
@@ -67,8 +61,8 @@ export default connect(mapStateToProps)(Score);
 
 const Container = styled.View`
   flex: 1;
-
   align-items: center;
+  background: #3f3e46;
 `;
 
 const Options = styled.View`
@@ -79,15 +73,30 @@ const Options = styled.View`
 const OptionText = styled.Text`
   text-align: center;
   font-size: 15px;
+  color: #e86c52;
 `;
 
 const ScoreContainer = styled.Text`
+  
   font-size: 70px;
   text-align: center;
-  padding: 30px;
+  padding: 70px;
+  color: #eeedf2;
+`;
+const ScoreView = styled.View`
+  background: #3f3e46;
+  text-align: center;
 `;
 
 const OptionsContainer = styled.View`
   flex: 1;
   flex-direction: row;
+  align-items: center;
+  background: #e8e7ec;
+  ${Platform.select({
+    ios: css`
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+    `
+  })}
 `;

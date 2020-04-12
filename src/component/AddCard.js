@@ -7,9 +7,10 @@ import {
   KeyboardAvoidingView,
   Platform
 } from "react-native";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { connect } from "react-redux";
 import { handleAddingCardToDeck } from "../actions/Decks";
+import { white } from "../utils/colors";
 
 // I will take the title of the decks from the newdeck route route
 class AddCard extends React.Component {
@@ -49,28 +50,32 @@ class AddCard extends React.Component {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
-            <Text> Add new card</Text>
-            <View>
-              <TextInputField
-                placeholder="Enter A Question  Here"
-                onChangeText={text => this.setState({ question: text.trim() })}
-                maxLength={200}
-                multiline={true}
-              />
-              <TextInputField
-                placeholder="Enter An Answer  Here"
-                onChangeText={text => this.setState({ answer: text.trim() })}
-                maxLength={200}
-                multiline={true}
-              />
-            </View>
-            <SubmitButton
-              onPress={text =>
-                question && answer ? this.handleSubmit(text) : null
-              }
-            >
-              <ButtonText>Submit</ButtonText>
-            </SubmitButton>
+            <Text style={{ color: "white", padding: 20 }}> Add new card</Text>
+            <InputContainer>
+              <View>
+                <TextInputField
+                  placeholder="Enter A Question  Here"
+                  onChangeText={text =>
+                    this.setState({ question: text.trim() })
+                  }
+                  maxLength={200}
+                  multiline={true}
+                />
+                <TextInputField
+                  placeholder="Enter An Answer  Here"
+                  onChangeText={text => this.setState({ answer: text.trim() })}
+                  maxLength={200}
+                  multiline={true}
+                />
+              </View>
+              <SubmitButton
+                onPress={text =>
+                  question && answer ? this.handleSubmit(text) : null
+                }
+              >
+                <ButtonText>Submit</ButtonText>
+              </SubmitButton>
+            </InputContainer>
           </Container>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -83,8 +88,20 @@ export default connect()(AddCard);
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  margin-top: 30px;
   justify-content: center;
+  background: #3f3e46;
+`;
+
+const InputContainer = styled.View`
+  align-items: center;
+  background: white;
+  padding: 20px;
+   ${Platform.select({
+  ios: css`
+       border-radius : 20px;
+    `
+})}
+
 `;
 
 const TextInputField = styled.TextInput`
@@ -94,14 +111,16 @@ const TextInputField = styled.TextInput`
   border-radius: 5px;
   width: 270px;
   margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 const AndroidSubmitBtn = styled.TouchableOpacity`
-  padding : 15px
+  padding : 13px
   background : grey;
-  width : 70%;
+  width : 270px;
   border-radius: 5px;
   margin: 10px;
+  background-color: #e86c52;
  
   
 `;
@@ -110,8 +129,9 @@ const IosAddCardBtn = styled.TouchableOpacity`
   margin: 10px;
   padding: 15px;
   background: grey;
-  width: 70%;
+  width: 270px;
   border-radius: 50px;
+  background-color: #e86c52;
 `;
 const ButtonText = styled.Text`
   font-size: 20px;

@@ -65,6 +65,7 @@ class Quiz extends React.Component {
 
     // Check If all the questions in a card has been answered
     if (card[currentindex] === undefined) {
+
       // Render the score component passing it navigation and total cards in deck as props;
       return (
         <Score totalCardsInDeck={totalCardsInDeck} navigation={navigation}>
@@ -84,9 +85,11 @@ class Quiz extends React.Component {
 
     return (
       <Container>
-        <Text style={{ fontSize: 20 }}>
-          {cardNumber} / {totalCardsInDeck}
-        </Text>
+        <Counter>
+          <Text style={{ fontSize: 20, textAlign:"center", color:"white"}}>
+            {cardNumber} / {totalCardsInDeck}
+          </Text>
+        </Counter>
         <Card>
           {showAnswer ? (
             <View>
@@ -131,6 +134,7 @@ const Container = styled.View`
   align-items: center;
   padding-top: 20px;
   justify-content: space-around;
+  background :  #3f3e46;
 `;
 
 const Card = styled.View`
@@ -140,19 +144,20 @@ const Card = styled.View`
 const Toggle = styled.Text`
   text-align: center;
   font-size: 20px;
+  color : #f27070;
   padding-top: 20px;
 `;
 
 const AndroidSubmitBtn = styled.TouchableOpacity`
   padding : 15px
-  background : grey;
+  background : #e86c52;
   width : 70%;
   border-radius: 5px;
 `;
 
 const IosAddCardBtn = styled.TouchableOpacity`
   padding: 15px;
-  background: grey;
+  background: #e86c52;
   width: 70%;
   border-radius: 50px;
 `;
@@ -166,4 +171,12 @@ const ButtonText = styled.Text`
 const OptionText = styled.Text`
   text-align: center;
   font-size: 15px;
+  color: #e86c52;
+`;
+
+const Counter = styled.View`
+ background: #e86c52
+ padding : 10px;
+ width : 30%;
+ border-radius: 25px;
 `;

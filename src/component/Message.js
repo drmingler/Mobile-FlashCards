@@ -1,20 +1,35 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { gray, purple } from "../utils/colors";
+import styled from "styled-components";
 
 export default function Message() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <Container>
       <MaterialCommunityIcons
         name={"cards-variant"}
-        size={250}
-        style={{ color: purple }}
+        size={150}
+        style={{ color: "#e86c52"}}
       />
 
-      <Text style={{ fontSize: 25, padding: 30, textAlign: "center" }}>
+      <MessageText >
         You Do Not Have Any Card In The Deck Please Add A Card
-      </Text>
-    </View>
+      </MessageText>
+    </Container>
   );
 }
+
+
+const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  background :  #3f3e46;
+  justify-content: center;
+`;
+
+const MessageText = styled.Text`
+  text-align: center;
+  font-size: 20px;
+  padding: 25px;
+  color: #eeedf2;
+`;

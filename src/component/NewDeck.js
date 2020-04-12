@@ -55,7 +55,7 @@ class NewDeck extends React.Component {
     const SubmitButton =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidSubmitBtn;
     return (
-      <KeyboardAvoidingView behavior={"padding"} style={{ flex: 1 }}>
+      <KeyboardAvoidingView behavior={"padding"} style={{ flex: 1, backgroundColor:"#e8e7ec" }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
             <Title as={Animated.Text} style={{ opacity:fadeIn }}>
@@ -109,23 +109,19 @@ const Container = styled.View`
       justify-content: space-between;
     `
   })}
+  
 `;
 
 const Title = styled.Text`
   font-size: 50px;
   text-align: center;
   padding: 10px;
+  
 `;
-
-// const Title = styled.Text`
-//   font-size: 50px;
-//   text-align: center;
-//   padding: 10px;
-// `;
 
 const AndroidSubmitBtn = styled.TouchableOpacity`
   padding : 15px
-  background : grey;
+  background : #e86c52;
   width : 70%;
   border-radius: 5px;
   margin: 15px;
@@ -135,7 +131,7 @@ const AndroidSubmitBtn = styled.TouchableOpacity`
 const IosAddCardBtn = styled.TouchableOpacity`
   margin: 10px;
   padding: 15px;
-  background: grey;
+  background: #e86c52;
   width: 70%;
   border-radius: 50px;
 `;

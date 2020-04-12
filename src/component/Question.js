@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
+import styled from "styled-components";
 
 
 
@@ -7,7 +8,14 @@ import { Text, View } from "react-native";
 export default function Questions({ question }) {
   return (
     <View>
-      <Text style={{fontSize:60, textAlign: "center", padding:10}}>{question}</Text>
+      <QuestionText>{question}</QuestionText>
     </View>
   );
 }
+
+const QuestionText = styled.Text`
+font-size : 60px;
+text-align : center;
+padding: 10px;
+color : #eeedf2;
+`;
