@@ -5,7 +5,6 @@ import DeckListItem from "./DeckListItems";
 import styled from "styled-components";
 import { handleInitialData } from "../actions/Shared";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { purple } from "../utils/colors";
 
 // I will add should component update for optimization
 /* DeckList lists all the available  decks in the store */
@@ -26,7 +25,7 @@ class DeckList extends React.Component {
             <Ionicons
               name={"ios-albums"}
               size={200}
-              style={{ color: "#e86c52"}}
+              style={{ color: "#e86c52" }}
             />
           ) : (
             <MaterialCommunityIcons
@@ -35,7 +34,9 @@ class DeckList extends React.Component {
               style={{ color: "#e86c52" }}
             />
           )}
-          <Text style={{ fontSize: 20 , color: "#eeedf2"}}>You are yet to add any deck</Text>
+          <Text style={{ fontSize: 20, color: "#eeedf2" }}>
+            You are yet to add any deck
+          </Text>
         </Center>
       );
     }
@@ -73,7 +74,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: #e8e7ec; 
+  background-color: #e8e7ec;
 `;
 
 const Center = styled.View`
@@ -82,4 +83,3 @@ const Center = styled.View`
   align-items: center;
   background: #3f3e46;
 `;
-

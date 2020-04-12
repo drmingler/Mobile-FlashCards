@@ -134,7 +134,7 @@ const Container = styled.View`
   align-items: center;
   padding-top: 20px;
   justify-content: space-around;
-  background :  #3f3e46;
+  background: #3f3e46;
 `;
 
 const Card = styled.View`

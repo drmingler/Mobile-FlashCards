@@ -1,7 +1,7 @@
 import React from "react";
 import { Animated, View, TouchableOpacity } from "react-native";
 import { calcPercentageScore, formatCard } from "../utils/helpers";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import { resetScore } from "../actions/Score";
@@ -77,7 +77,6 @@ const OptionText = styled.Text`
 `;
 
 const ScoreContainer = styled.Text`
-  
   font-size: 70px;
   text-align: center;
   padding: 70px;

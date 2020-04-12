@@ -9,21 +9,20 @@ export default function Message() {
       <MaterialCommunityIcons
         name={"cards-variant"}
         size={150}
-        style={{ color: "#e86c52"}}
+        style={{ color: "#e86c52" }}
       />
 
-      <MessageText >
+      <MessageText>
         You Do Not Have Any Card In The Deck Please Add A Card
       </MessageText>
     </Container>
   );
 }
 
-
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  background :  #3f3e46;
+  background: #3f3e46;
   justify-content: center;
 `;
 

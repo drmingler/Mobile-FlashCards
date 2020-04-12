@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import styled from "styled-components";
+
 // Answer Component renders the the answer
 export default function Answers({ answer }) {
   return (
@@ -11,8 +12,8 @@ export default function Answers({ answer }) {
 }
 
 const AnswerText = styled.Text`
-font-size : 60px;
-text-align : center;
-padding: 10px;
-color : #eeedf2;
+  font-size: 30px;
+  text-align: center;
+  padding: 10px;
+  color: #eeedf2;
 `;

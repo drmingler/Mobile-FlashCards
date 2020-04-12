@@ -33,17 +33,6 @@ export const _getDecks = async () => {
   }
 };
 
-//Get a specific decks
-export const _getDeck = async title => {
-  try {
-    const decks = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-    const data = JSON.parse(decks);
-    return data[title];
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 // Remove decks from the list of decks
 export const _removeDeck = async title => {
   const deck = await AsyncStorage.getItem(DECK_STORAGE_KEY);

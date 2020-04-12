@@ -19,7 +19,6 @@ import Score from "./src/component/Score";
 import NewDeck from "./src/component/NewDeck";
 import { purple, white } from "./src/utils/colors";
 import { Ionicons } from "@expo/vector-icons";
-import { black } from "color-name";
 import { setLocalNotification } from "./src/utils/helpers";
 
 function MyStatusBar({ backgroundColor, ...props }) {
@@ -96,7 +95,7 @@ class App extends React.Component {
                 }
               })}
               tabBarOptions={{
-                activeTintColor: Platform.OS === "ios" ? "#e86c52" : black,
+                activeTintColor: Platform.OS === "ios" ? "#e86c52" : "black",
                 style: {
                   height: 56,
                   backgroundColor: white,

@@ -55,10 +55,13 @@ class NewDeck extends React.Component {
     const SubmitButton =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidSubmitBtn;
     return (
-      <KeyboardAvoidingView behavior={"padding"} style={{ flex: 1, backgroundColor:"#e8e7ec" }}>
+      <KeyboardAvoidingView
+        behavior={"padding"}
+        style={{ flex: 1, backgroundColor: "#e8e7ec" }}
+      >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
-            <Title as={Animated.Text} style={{ opacity:fadeIn }}>
+            <Title as={Animated.Text} style={{ opacity: fadeIn }}>
               What is the title of your decks?
             </Title>
             {Platform.OS === "ios" ? (

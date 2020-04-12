@@ -7,7 +7,6 @@ import {
   clearLocalNotifications,
   setLocalNotification
 } from "../utils/helpers";
-
 import { gray, white } from "../utils/colors";
 
 class DeckCard extends React.Component {

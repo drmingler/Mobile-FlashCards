@@ -4,7 +4,7 @@ import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 /* The DeckListItem  displays the  name of each deck
-name and the number of cards it has. it receives the
+and the number of cards it has. it receives the
 navigation object as a prop to enable redirection from
 this component to another component*/
 
@@ -19,29 +19,29 @@ class DeckListItem extends React.Component {
     const { title, questions } = this.props;
     const numberOfCards = questions.length;
     return (
-        <TouchableOpacity
-          key={title}
-          style={styles.item}
-          onPress={() => {
-            this.handleClick(title);
-          }}
-        >
-          <View>
-            <View style={{ alignItems: "center" }}>
-              <MaterialCommunityIcons
-                name={"cards-playing-outline"}
-                size={100}
-                style={{ color: "#e86c52" }}
-              />
-            </View>
-            <CardInfo>{title}</CardInfo>
-            {numberOfCards === 1 ? (
-              <CardInfo>{numberOfCards} card</CardInfo>
-            ) : (
-              <CardInfo>{numberOfCards} cards</CardInfo>
-            )}
+      <TouchableOpacity
+        key={title}
+        style={styles.item}
+        onPress={() => {
+          this.handleClick(title);
+        }}
+      >
+        <View>
+          <View style={{ alignItems: "center" }}>
+            <MaterialCommunityIcons
+              name={"cards-playing-outline"}
+              size={100}
+              style={{ color: "#e86c52" }}
+            />
           </View>
-        </TouchableOpacity>
+          <CardInfo>{title}</CardInfo>
+          {numberOfCards === 1 ? (
+            <CardInfo>{numberOfCards} card</CardInfo>
+          ) : (
+            <CardInfo>{numberOfCards} cards</CardInfo>
+          )}
+        </View>
+      </TouchableOpacity>
     );
   }
 }
