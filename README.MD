@@ -35,13 +35,13 @@ Install the Expo app on your iOS device.
 Press 'e' in the terminal to send the app link to your email address or phone number. This link can be used to run your project from the Expo app.
 This is what the app should look like, once you open the app on Expor.
 
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image1.png "image1")
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image2.png "image2")
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image3.png "image3")
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image4.png "image4")
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image5.png "image5")
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image6.png "image6")
-![alt text]( https://github.com/drmingler/Mobile-FlashCards/Mobile-FlashCard/images/image7.png "image7")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image1.png "image1")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image2.png "image2")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image3.png "image3")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image4.png "image4")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image5.png "image5")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image6.png "image6")
+![alt text]( https://github.com/drmingler/Mobile-FlashCards/blob/master/images/image7.png "image7")
 
 Alternatively you can press 's' in the terminal and sign in with an Expo account, and sign in with the same account in the Expo app: your projects will automatically appear in the "Projects" tab.
 
