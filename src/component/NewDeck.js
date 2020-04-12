@@ -72,6 +72,7 @@ class NewDeck extends React.Component {
             <TextInputField
               placeholder="Enter A Deck Title Here"
               onChangeText={this.handleChange}
+              value={this.state.formInput}
               maxLength={12}
               style={formInput && { borderColor: purple }}
             />

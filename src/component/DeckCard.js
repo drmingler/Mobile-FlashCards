@@ -3,6 +3,7 @@ import { Platform, TouchableOpacity, Alert } from "react-native";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { handleRemoveDeck } from "../actions/Shared";
+import {clearLocalNotifications, setLocalNotification} from "../utils/helpers";
 
 class DeckCard extends React.Component {
   // Route to add card screen with title of card
@@ -13,6 +14,11 @@ class DeckCard extends React.Component {
 
   // Route to Quiz screen with the title of card
   handleStartQuiz = () => {
+    // Set the local notification
+    // clearLocalNotifications()
+    //     .then(setLocalNotification);
+    setLocalNotification();
+
     const { title, navigation } = this.props;
     navigation.navigate("Quiz", { title: title });
   };
