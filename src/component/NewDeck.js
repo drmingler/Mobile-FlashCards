@@ -3,7 +3,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Animated
 } from "react-native";
 import styled, { css } from "styled-components";
 import { purple, red } from "../utils/colors";
@@ -13,13 +14,18 @@ import { handleInitialData } from "../actions/Shared";
 import { handleAddDeckTitle } from "../actions/Decks";
 
 class NewDeck extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(handleInitialData());
-  }
   state = {
     formInput: "",
-    titleAlreadyExist: false
+    titleAlreadyExist: false,
+    fadeIn: new Animated.Value(0)
   };
+
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+    const { fadeIn } = this.state;
+    Animated.timing(fadeIn, { toValue: 1, delay: 5, duration: 1000 }).start();
+  }
+
   handleChange = text => {
     this.setState({ formInput: text.trim() });
   };
@@ -38,22 +44,23 @@ class NewDeck extends React.Component {
     dispatch(handleAddDeckTitle(formInput));
 
     // Reset the form state
-    this.setState({ formInput: "" });
+    this.setState({ formInput: "", titleAlreadyExist: false });
 
     // Route to Deck screen
-    navigation.navigate("Deck",{title:formInput});
-
+    navigation.navigate("Deck", { title: formInput });
   };
 
   render() {
-    const { formInput, titleAlreadyExist } = this.state;
+    const { formInput, titleAlreadyExist ,fadeIn } = this.state;
     const SubmitButton =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidSubmitBtn;
     return (
       <KeyboardAvoidingView behavior={"padding"} style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
-            <Title> What is the title of your decks?</Title>
+            <Title as={Animated.Text} style={{ opacity:fadeIn }}>
+              What is the title of your decks?
+            </Title>
             {Platform.OS === "ios" ? (
               <Ionicons
                 name={"ios-albums"}
@@ -110,12 +117,18 @@ const Title = styled.Text`
   padding: 10px;
 `;
 
+// const Title = styled.Text`
+//   font-size: 50px;
+//   text-align: center;
+//   padding: 10px;
+// `;
+
 const AndroidSubmitBtn = styled.TouchableOpacity`
   padding : 15px
   background : grey;
   width : 70%;
   border-radius: 5px;
-  margin: 10px;
+  margin: 15px;
   
 `;
 

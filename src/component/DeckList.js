@@ -13,6 +13,7 @@ import { purple } from "../utils/colors";
 class DeckList extends React.Component {
 
   componentDidMount() {
+    // Get the decks from the database
     const {getInitialData} = this.props;
     getInitialData()
   }
@@ -60,12 +61,12 @@ class DeckList extends React.Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
+    // Dispatch an action that gets all the decks from the  database
     getInitialData: () => dispatch(handleInitialData())
   };
 }
 
 function mapStateToProps({ Decks }) {
-  console.log(Decks);
   return {
     Decks
   };

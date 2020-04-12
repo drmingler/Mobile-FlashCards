@@ -49,9 +49,24 @@ function DeckComponents() {
   );
 }
 
+// Stack Navigator for every component that has  to do with the NewDeck component
+const NewCardStack = createStackNavigator();
+function NewCardComponents() {
+  const header = Platform.OS === "ios";
+  return (
+    <NewCardStack.Navigator
+      screenOptions={{
+        headerShown: header
+      }}
+    >
+      <NewCardStack.Screen name={"NewDeck"} component={NewDeck} />
+    </NewCardStack.Navigator>
+  );
+}
+
 class App extends React.Component {
   componentDidMount() {
-     setLocalNotification();
+    setLocalNotification();
   }
 
   render() {
@@ -99,7 +114,7 @@ class App extends React.Component {
               }}
             >
               <Tab.Screen name="Decks" component={DeckComponents} />
-              <Tab.Screen name={"NewDeck"} component={NewDeck} />
+              <Tab.Screen name={"NewDeck"} component={NewCardComponents} />
             </Tab.Navigator>
           </NavigationContainer>
         </Container>

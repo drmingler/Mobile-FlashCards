@@ -1,3 +1,4 @@
+
 // formatCard returns all the data needed by the quiz component in an easy to use format
 import { AsyncStorage } from "react-native";
 import { Notifications } from "expo";

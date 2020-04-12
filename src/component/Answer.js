@@ -5,7 +5,7 @@ import { View, Text } from "react-native";
 export default function Answers({ answer }) {
   return (
     <View>
-      <Text style={{fontSize:40, textAlign: "center", padding : 10}}>{answer}</Text>
+      <Text style={{fontSize:60, textAlign: "center", padding : 10}}>{answer}</Text>
     </View>
   );
 }

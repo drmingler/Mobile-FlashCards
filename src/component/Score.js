@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Platform, View, TouchableOpacity } from "react-native";
+import { Animated, View, TouchableOpacity } from "react-native";
 import { calcPercentageScore, formatCard } from "../utils/helpers";
 import styled from "styled-components";
 import { AntDesign } from "@expo/vector-icons";
@@ -7,6 +7,15 @@ import { connect } from "react-redux";
 import { resetScore } from "../actions/Score";
 
 class Score extends React.Component {
+  state = {
+    fadeIn: new Animated.Value(0)
+  };
+
+  componentDidMount() {
+    const { fadeIn } = this.state;
+    Animated.timing(fadeIn, { toValue: 2, duration: 2000, delay: 8 }).start();
+  }
+
   toDeck = () => {
     this.props.dispatch(resetScore());
     // Navigate to deck page with
@@ -14,14 +23,21 @@ class Score extends React.Component {
   };
 
   render() {
+    // Get the animations from the state
+    const { fadeIn } = this.state;
     // Get the final score from the store
     const { finalScore, children } = this.props;
 
     return (
       <Container>
         <View>
-          <ScoreContainer>Your Score Is</ScoreContainer>
-          <ScoreContainer style={{ marginBottom: 50, marginTop: 50 }}>
+          <ScoreContainer as={Animated.Text} style={{ opacity: fadeIn }}>
+            Your Score Is
+          </ScoreContainer>
+          <ScoreContainer
+            as={Animated.Text}
+            style={{ marginBottom: 50, marginTop: 50, opacity: fadeIn }}
+          >
             {finalScore}%
           </ScoreContainer>
         </View>
@@ -63,7 +79,6 @@ const Options = styled.View`
 const OptionText = styled.Text`
   text-align: center;
   font-size: 15px;
-
 `;
 
 const ScoreContainer = styled.Text`
@@ -73,6 +88,6 @@ const ScoreContainer = styled.Text`
 `;
 
 const OptionsContainer = styled.View`
-flex:1;
-flex-direction : row;
+  flex: 1;
+  flex-direction: row;
 `;

@@ -1,11 +1,24 @@
 import React from "react";
-import { Platform, TouchableOpacity, Alert } from "react-native";
+import { Platform, TouchableOpacity, Alert, Animated } from "react-native";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { handleRemoveDeck } from "../actions/Shared";
-import {clearLocalNotifications, setLocalNotification} from "../utils/helpers";
+import {
+  clearLocalNotifications,
+  setLocalNotification
+} from "../utils/helpers";
 
 class DeckCard extends React.Component {
+  // The state that stores animations values
+  state = {
+    spring: new Animated.Value(0)
+  };
+
+  componentDidMount() {
+    const { spring } = this.state;
+    Animated.timing(spring, { toValue: 1, speed: 8 }).start();
+  }
+
   // Route to add card screen with title of card
   handleAddCard = () => {
     const { title, navigation } = this.props;
@@ -15,8 +28,7 @@ class DeckCard extends React.Component {
   // Route to Quiz screen with the title of card
   handleStartQuiz = () => {
     // Set the local notification
-    clearLocalNotifications()
-        .then(setLocalNotification);
+    clearLocalNotifications().then(setLocalNotification);
 
     const { title, navigation } = this.props;
     navigation.navigate("Quiz", { title: title });
@@ -42,17 +54,33 @@ class DeckCard extends React.Component {
 
   render() {
     const { title, numOfCards } = this.props;
+    const { spring } = this.state;
 
     const ButtonStyle =
       Platform.OS === "ios" ? IosAddCardBtn : AndroidAddCardBtn;
     return (
       <Container>
         <DeckInfoContainer>
-          <DeckTitle>{title}</DeckTitle>
+          <DeckTitle
+            as={Animated.Text}
+            style={{ transform: [{ scale: spring }] }}
+          >
+            {title}
+          </DeckTitle>
           {numOfCards === 1 ? (
-            <CardNumber>{numOfCards} card</CardNumber>
+            <CardNumber
+              as={Animated.Text}
+              style={{ transform: [{ scale: spring }] }}
+            >
+              {numOfCards} card
+            </CardNumber>
           ) : (
-            <CardNumber>{numOfCards} cards</CardNumber>
+            <CardNumber
+              as={Animated.Text}
+              style={{ transform: [{ scale: spring }] }}
+            >
+              {numOfCards} cards
+            </CardNumber>
           )}
         </DeckInfoContainer>
         <CardButtonsContainer>
@@ -128,8 +156,6 @@ const DeleteButton = styled.Text`
 
 function mapStateToProps({ Decks }, { route, navigation }) {
   const { title } = route.params;
-  console.log("From Card");
-  console.log(title);
   const card = Decks[title];
   return {
     title,
