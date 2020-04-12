@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import reducer from "./src/reducers/Shared";
 import middleware from "./src/middleware/index";
 import styled from "styled-components";
-import Constants from "expo-constants";;
+import Constants from "expo-constants";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -18,9 +18,9 @@ import DeckCard from "./src/component/DeckCard";
 import Score from "./src/component/Score";
 import NewDeck from "./src/component/NewDeck";
 import { purple, white } from "./src/utils/colors";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { black } from "color-name";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { setLocalNotification } from "./src/utils/helpers";
 
 function MyStatusBar({ backgroundColor, ...props }) {
   return (
@@ -49,23 +49,10 @@ function DeckComponents() {
   );
 }
 
-// Stack Navigator for every component that has to do with a user entering an input
-// const UserStack = createStackNavigator();
-// function UserComponent() {
-//   const header = Platform.OS === "ios";
-//   return (
-//     <UserStack.Navigator
-//       screenOptions={{
-//         headerShown: header
-//       }}
-//     >
-//       <UserStack.Screen name={"NewDeck"} component={NewDeck} />
-//       <UserStack.Screen name={"AddCard"} component={AddCard} />
-//     </UserStack.Navigator>
-//   );
-// }
-
 class App extends React.Component {
+  componentDidMount() {
+     setLocalNotification();
+  }
 
   render() {
     const Tab =
@@ -73,7 +60,7 @@ class App extends React.Component {
         ? createBottomTabNavigator()
         : createMaterialTopTabNavigator();
     return (
-      <Provider store={createStore(reducer,composeWithDevTools(middleware))}>
+      <Provider store={createStore(reducer, middleware)}>
         <Container>
           <MyStatusBar
             backgroundColor={Platform.OS === "ios" ? white : purple}
@@ -85,9 +72,7 @@ class App extends React.Component {
                   let iconName;
 
                   if (route.name === "Decks") {
-                    iconName = focused
-                      ? "ios-list-box"
-                      : "ios-list";
+                    iconName = focused ? "ios-list-box" : "ios-list";
                   } else if (route.name === "NewDeck") {
                     iconName = "ios-create";
                   }
@@ -114,7 +99,6 @@ class App extends React.Component {
               }}
             >
               <Tab.Screen name="Decks" component={DeckComponents} />
-              {/*<Tab.Screen name="NewDeck" component={UserComponent} />*/}
               <Tab.Screen name={"NewDeck"} component={NewDeck} />
             </Tab.Navigator>
           </NavigationContainer>

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Platform } from "react-native";
 import styled from "styled-components";
 import Answer from "../component/Answer";
 import Question from "../component/Question";
-import { formatCard } from "../utils/helpers";
+import {formatCard} from "../utils/helpers";
 import { connect } from "react-redux";
 import { addScore, resetScore } from "../actions/Score";
 import Message from "./Message";
@@ -29,6 +29,7 @@ class Quiz extends React.Component {
     }));
   };
   handleClick = from => {
+
     // If the correct button is clicked then dispatch the add score action
     from.correct && this.props.dispatch(addScore(1));
 

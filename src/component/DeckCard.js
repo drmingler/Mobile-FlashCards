@@ -15,9 +15,8 @@ class DeckCard extends React.Component {
   // Route to Quiz screen with the title of card
   handleStartQuiz = () => {
     // Set the local notification
-    // clearLocalNotifications()
-    //     .then(setLocalNotification);
-    setLocalNotification();
+    clearLocalNotifications()
+        .then(setLocalNotification);
 
     const { title, navigation } = this.props;
     navigation.navigate("Quiz", { title: title });

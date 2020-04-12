@@ -51,7 +51,7 @@ export default connect(mapStateToProps)(Score);
 
 const Container = styled.View`
   flex: 1;
-  padding-top: 20px;
+
   align-items: center;
 `;
 
@@ -63,6 +63,7 @@ const Options = styled.View`
 const OptionText = styled.Text`
   text-align: center;
   font-size: 15px;
+
 `;
 
 const ScoreContainer = styled.Text`
