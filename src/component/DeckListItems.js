@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import DeckCard from "./DeckCard";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
+import {white} from "../utils/colors";
+
 
 /* The DeckListItem  displays the  name of each deck
 name and the number of cards it has. it receives the
 navigation object as a prop to enable redirection from
 this component to another component*/
-
 
 class DeckListItem extends React.Component {
   handleClick = title => {
@@ -19,10 +19,10 @@ class DeckListItem extends React.Component {
   render() {
     const { title, questions } = this.props;
     const numberOfCards = questions.length;
-    const Item = Platform.OS === "ios" ? ItemIos : ItemAndroid;
     return (
-      <Item
+        <TouchableOpacity
         key={title}
+        style={styles.item}
         onPress={() => {
           this.handleClick(title);
         }}
@@ -35,30 +35,31 @@ class DeckListItem extends React.Component {
             <CardInfo>{numberOfCards} cards</CardInfo>
           )}
         </View>
-      </Item>
+      </TouchableOpacity>
     );
   }
 }
 
 export default DeckListItem;
 
-const ItemIos = styled.TouchableOpacity`
-  margin-top: 17px;
-  background: grey;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 8px;
-  padding: 50px;
-`;
-
-const ItemAndroid = styled.TouchableOpacity`
-  margin-top: 17px;
-  background: gray;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 2px;
-  padding: 50px;
-`;
+const styles = StyleSheet.create({
+  item: {
+    backgroundColor: white,
+    padding: 60,
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: Platform.OS === "ios" ? 16 : 2,
+    justifyContent: "center",
+    shadowRadius: 3,
+    shadowOpacity: 1,
+    shadowColor: "rgba(0,0,0,0.24)",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    }
+  }
+});
 const CardInfo = styled.Text`
   font-size: 40px;
   text-align: center;
