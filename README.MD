@@ -1,4 +1,4 @@
-## Would-You-Rather
+## Mobile-FlashCards
 A mobile application (Android or iOS - or both) that allows users to study collections of flashcards. The app allows users to create different categories of flashcards called "decks". Users can add flashcards to the decks they created. Each flashcard has a question and an answer to that question. A deck can have more than one flashcard. Users can take  a quiz on each deck. This App was built as part of Udacity's React Nanodegree Program.
 
 ## Getting Start
